@@ -17,7 +17,7 @@
 set -e
 
 INPUT_FILE=${1:?Cell file required}
-START_DATE=${2:+$(date +%F)}
+START_DATE=${2:-$(date +%F)}
 
 # Set "DATE_PGRM" in env to a GNU date binary
 : ${DATE_PRGM=date}
@@ -30,7 +30,7 @@ START_DATE=${2:+$(date +%F)}
 # make a place to keep some scratch files
 WORK_DIR=$(mktemp -d ${TMPDIR:-/tmp}/tmp.XXXXXXXXXX)
 # clean up our junk on exit
-trap 'rm -rf ${WORK_DIR}' EXIT
+#trap 'rm -rf ${WORK_DIR}' EXIT
 
 # make a copy of the pattern file with comments stripped
 CLEANED="${WORK_DIR}/clean"
@@ -62,9 +62,9 @@ for (( col = 1; col <= ${MAX_COL}; col++ )); do
     if [[ 'O' == ${cell} ]]; then
       # this will only work if $DATE_PRGM is GNU date.
       # BSD date is not the same at all.
-      ON_DATE=$(${DATE_PRGM} -d "${START_DATE} ${DAY} days" +%F)
+      DATE=$(${DATE_PRGM} -d "${START_DATE} ${DAY} days" +%F)
       for h in $(seq -w 1 23); do
-        CDATE="${ON_DATE}T${h}:00"
+        CDATE="${DATE}T${h}:00"
         echo "GIT_AUTHOR_DATE='${CDATE}' GIT_COMMITTER_DATE='${CDATE}' git commit --allow-empty -m '${CDATE}'"
       done
     fi
