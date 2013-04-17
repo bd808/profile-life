@@ -4,7 +4,38 @@ Profile Life
 Github profile page hack to display a glider moving across my contribution
 timeline.
 
+![Example graph](assets/timeline.png)
+
 Inspired by https://github.com/will/githubprofilecheat2
+
+WTF?
+====
+
+GitHub has a neat display of historical activity on each user's profile page.
+This 53x7 grid shows the number of commits and other GitHub interactions that
+the user performed on each day for the last year. Each cell in the graph is
+shaded with one of 5 possible colors. These colors correspond to the quartiles
+of the normal distribution over the range `[0, max(v)]` where `v` is (issues
+opened + pull requests proposed + commits authored) per day.
+
+If your all time high for the last year was 50 contributions, the
+cells would color like this:
+
+| Contributions   | Color   |
+| :-------------- | :------ |
+| 0               | #eeeeee |
+| 1 - 12          | #d6e685 |
+| 13 - 25         | #8cc665 |
+| 26 - 38         | #44a340 |
+| 39+             | #1e6823 |
+
+This script will create a commit history in a repository to "game" this graph
+to display a user specified pattern.
+
+Currently the patterns generated are fairly simple. The script reads a file in
+the form of a [plaintext Life file][] and outputs a list of shell commands
+that will populate a git repository with 23 empty commits for the day
+corresponding with a cell that is populated with an `O` character.
 
 Usage
 =====
@@ -12,21 +43,6 @@ Usage
     $ ./bin/pattern-to-commits.sh patterns/glider.cells 2012-04-15 | sh
     $ git push
 
-
-WTF?
-====
-
-GitHub has a neat display of historical activity on each user's profile page.
-This 53x7 grid shows the number of commits and other GItHub interactions that
-the user performed on each day for the last year. This script will create
-a commit history in a repository to "game" this graph to display a user
-specified pattern.
-
-Currently the patterns generated are fairly simple. A cell can either be
-colored with the "more" color (dark green) or left alone. The script reads
-a file in the form of a [plaintext Life files][] and outputs a list of shell
-commands that will populate a git repository with 23 empty commits for the day
-corresponding with a cell that is populated with an `O` character.
 
 Notes
 =====
@@ -39,5 +55,5 @@ On OS X this can be accomplished by installing the `coreutils` package:
     $ brew install coreutils
     $ DATE_PRGM=gdate ./bin/pattern-to-commits.sh ...
 
----
-[plaintext Life files]: http://www.conwaylife.com/wiki/Plaintext
+
+[plaintext Life file]: http://www.conwaylife.com/wiki/Plaintext
