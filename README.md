@@ -21,13 +21,13 @@ opened + pull requests proposed + commits authored) per day.
 If your all time high for the last year was 50 contributions, the
 cells would color like this:
 
-| Contributions   | Color   |
-| :-------------- | :------ |
-| 0               | #eeeeee |
-| 1 - 12          | #d6e685 |
-| 13 - 25         | #8cc665 |
-| 26 - 38         | #44a340 |
-| 39+             | #1e6823 |
+| Contributions   | Color                         |
+| :-------------- | :---------------------------- |
+| 0               | ![#eeeeee](assets/eeeeee.png) |
+| 1 - 12          | ![#d6e685](assets/d6e685.png) |
+| 13 - 25         | ![#8cc665](assets/8cc665.png) |
+| 26 - 38         | ![#44a340](assets/44a340.png) |
+| 39+             | ![#1e6823](assets/1e6823.png) |
 
 This script will create a commit history in a repository to "game" this graph
 to display a user specified pattern.
