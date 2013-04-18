@@ -6,8 +6,7 @@
 # http://www.conwaylife.com/wiki/Plaintext. The pattern described should be
 # 7 rows or less in height in order to fit on the GitHub timeline.
 #
-#/ Usage: pattern-to-commits.sh [OPTIONS] something.cell
-#/    -s YYYY-MM-DD : Date to start pattern on
+#/ Usage: pattern-to-commits.sh something.cell [YYYY-MM-DD]
 #/   If no start date is given, pattern will start today.
 #
 # Author: Bryan Davis <bd808@bd808.com>
