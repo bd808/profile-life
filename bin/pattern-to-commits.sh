@@ -63,8 +63,10 @@ for (( col = 1; col <= ${MAX_COL}; col++ )); do
       # BSD date is not the same at all.
       DATE=$(${DATE_PRGM} -d "${START_DATE} ${DAY} days" +%F)
       for h in $(seq -w 1 23); do
-        CDATE="${DATE}T${h}:00"
-        echo "GIT_AUTHOR_DATE='${CDATE}' GIT_COMMITTER_DATE='${CDATE}' git commit --allow-empty -m '${CDATE}'"
+        for m in $(seq -w 0 10 50); do
+          CDATE="${DATE}T${h}:${m}"
+          echo "GIT_AUTHOR_DATE='${CDATE}' GIT_COMMITTER_DATE='${CDATE}' git commit --allow-empty -m '${CDATE}'"
+        done
       done
     fi
   done
