@@ -37,7 +37,7 @@ the form of a [plaintext Life file][] and outputs a list of shell commands
 that will populate a git repository with 23 empty commits for the day
 corresponding with a cell that is populated with an `O` character.
 
-Usage
+Usage:
 =====
 
     $ ./bin/pattern-to-commits.sh patterns/glider.cells 2012-04-15 | sh
