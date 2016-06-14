@@ -43,17 +43,4 @@ Usage
     $ ./bin/pattern-to-commits.sh patterns/glider.cells 2012-04-15 | sh
     $ git push
 
-
-Notes
-=====
-On Apple OS X or other BSD boxen, you'll need to have a copy of GNU date
-available to do the date formatting. You can tell the script to use
-a different `date` binary by setting the `DATE_PGRM` environment variable.
-
-On OS X this can be accomplished by installing the `coreutils` package:
-
-    $ brew install coreutils
-    $ DATE_PRGM=gdate ./bin/pattern-to-commits.sh ...
-
-
 [plaintext Life file]: http://www.conwaylife.com/wiki/Plaintext
