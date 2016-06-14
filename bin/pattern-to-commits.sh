@@ -21,6 +21,16 @@ START_DATE=${2:-$(date +%F)}
 # Set "DATE_PGRM" in env to a GNU date binary
 : ${DATE_PRGM=date}
 
+function date_bsd() {
+  DATE=$(${DATE_PRGM} -j -v+${1}d -f "%F" ${START_DATE} +%F)
+}
+
+function date_gnu {
+  DATE=$(${DATE_PRGM} -d "${START_DATE} ${1} days" +%F)
+}
+# BSD `date` has no help option while GNU version does
+${DATE_PRGM} --help > /dev/null 2>&1 && DATE_CMD=date_gnu || DATE_CMD=date_bsd
+
 [[ -r $INPUT_FILE ]] || {
   echo "File ${INPUT_FILE} not readable" >&2
   exit 64
@@ -59,9 +69,7 @@ for (( col = 1; col <= ${MAX_COL}; col++ )); do
   for cell in $WEEK; do
     DAY=$(( ${DAY} + 1 ))
     if [[ 'O' == ${cell} ]]; then
-      # this will only work if $DATE_PRGM is GNU date.
-      # BSD date is not the same at all.
-      DATE=$(${DATE_PRGM} -d "${START_DATE} ${DAY} days" +%F)
+      ${DATE_CMD} ${DAY}
       for h in $(seq -w 1 23); do
         for m in $(seq -w 0 10 50); do
           CDATE="${DATE}T${h}:${m}"
