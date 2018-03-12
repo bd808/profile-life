@@ -40,7 +40,7 @@ corresponding with a cell that is populated with an `O` character.
 Usage
 =====
 
-    $ ./bin/pattern-to-commits.sh patterns/glider.cells 2012-04-15 | sh
+    $ ./bin/pattern-to-commits.sh patterns/glider.cells 2012-04-15
     $ git push
 
 [plaintext Life file]: http://www.conwaylife.com/wiki/Plaintext
