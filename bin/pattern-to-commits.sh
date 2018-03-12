@@ -72,8 +72,9 @@ for (( col = 1; col <= ${MAX_COL}; col++ )); do
       ${DATE_CMD} ${DAY}
       for h in $(seq -w 1 23); do
         for m in $(seq -w 0 10 50); do
-          CDATE="${DATE}T${h}:${m}"
-          echo "GIT_AUTHOR_DATE='${CDATE}' GIT_COMMITTER_DATE='${CDATE}' git commit --allow-empty -m '${CDATE}'"
+          CDATE="${DATE} ${h}:${m}"
+          echo "${CDATE}" >> date
+          git commit --date="${CDATE}" -am "${CDATE}"
         done
       done
     fi
